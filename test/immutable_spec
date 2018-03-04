@@ -1,5 +1,8 @@
-import {expect} from 'chai';
-import {List, Map} from 'immutable';
+let chai = require('chai');
+let expect = chai.expect;
+let immutable = require('immutable');
+let List = immutable.List;
+let Map = immutable.Map;
 
 describe('immutability',() => {
 
@@ -21,22 +24,23 @@ describe('immutability',() => {
     describe('a list', () => {
         function addMovie(currentState, movie) {
             return currentState.push(movie);
-        };
+        }
 
         it('is immutable', () => {
            let state = List.of('Trainspotting','28 Days Later');
            let nextState = addMovie(state, 'Sunshine');
+
+            expect(nextState).to.equal(List.of(
+                'Trainspotting',
+                '28 Days Later',
+                'Sunshine'
+            ));
+
+            expect(state).to.equal(List.of(
+                'Trainspotting',
+                '28 Days Later'
+            ));
         });
-
-        expect(nextState).to.equal(List.of(
-           'Trainspotting',
-            '28 Days Later',
-            'Sunshine'
-        ));
-
-        expect(state).to.equal(List.of(
-            'Trainspotting',
-            '28 Days Later'
-        ));
     });
+
 });
