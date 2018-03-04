@@ -4,6 +4,7 @@ let immutable = require('immutable');
 let List = immutable.List;
 let Map = immutable.Map;
 
+
 describe('immutability', () => {
 
     describe('a number', () => {
@@ -23,9 +24,7 @@ describe('immutability', () => {
 
     describe('a tree', () => {
         function addMovie(currentState, movie) {
-            return currentState.set(
-                'movies',
-                currentState.get('movies').push(movie));
+            return currentState.update('movies', movies => movies.push(movie));
         }
 
         it('is immutable', () => {
