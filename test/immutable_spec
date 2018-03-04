@@ -4,7 +4,7 @@ let immutable = require('immutable');
 let List = immutable.List;
 let Map = immutable.Map;
 
-describe('immutability',() => {
+describe('immutability', () => {
 
     describe('a number', () => {
         function incremement(currentState) {
@@ -21,25 +21,34 @@ describe('immutability',() => {
     });
 
 
-    describe('a list', () => {
+    describe('a tree', () => {
         function addMovie(currentState, movie) {
-            return currentState.push(movie);
+            return currentState.set(
+                'movies',
+                currentState.get('movies').push(movie));
         }
 
         it('is immutable', () => {
-           let state = List.of('Trainspotting','28 Days Later');
-           let nextState = addMovie(state, 'Sunshine');
+            let state = Map({
+                movies: List.of('Trainspotting', '28 Days Later')
+            });
+            let nextState = addMovie(state, 'Sunshine');
 
-            expect(nextState).to.equal(List.of(
-                'Trainspotting',
-                '28 Days Later',
-                'Sunshine'
-            ));
+            expect(nextState).to.equal(Map({
+                movies: List.of(
+                    'Trainspotting',
+                    '28 Days Later',
+                    'Sunshine'
+                )
+            }));
 
-            expect(state).to.equal(List.of(
-                'Trainspotting',
-                '28 Days Later'
-            ));
+            expect(state).to.equal(Map({
+                movies: List.of(
+                    'Trainspotting',
+                    '28 Days Later'
+                )
+            }));
+            ;
         });
     });
 
