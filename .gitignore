@@ -1,0 +1,9 @@
+# Dependency directories
+node_modules/
+
+# User-specific stuff:
+.idea/*
+
+
+## File-based project format:
+*.iws
