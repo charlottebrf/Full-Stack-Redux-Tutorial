@@ -12,4 +12,4 @@ Using Redux, Immutable library & Node JS to create a voting server using the fol
 Tests use Mocha & Chai.
 
 Run the tests using the following command:
-`npm run test`
+`npm run test`1
